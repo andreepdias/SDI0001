@@ -123,16 +123,13 @@ class ConexaoTCP(socketserver.BaseRequestHandler):
 		dados = dados.split(";")
 
 		indice = dados[1]
+		print("indice: " + indice)
 
 		envio = mensagens[int(indice)]
 		self.request.sendall(bytes(envio, "utf-8"))
 
-def threadRecebeMensagens():
-	while(True):
-		msg = receberMensagens()
-		if(msg != ""):
-			print(msg)
-		time.sleep(1)
+# def threadRecebeMensagens():
+
 
 if __name__ == "__main__":
 	thread.start_new_thread(threadAguardaSolicitacoes, ())
@@ -142,15 +139,25 @@ if __name__ == "__main__":
 	print("Digite seu nome:")
 	nome = input()
 
-	mensagem = ""
+	escolha = ""
 
 	numero_indices_conhecidos = requisicaoTotalMensagens()
 
-	clearScreen()
-	print("Bem-vindo ao Chat P2P, " + nome + "!\t(" + str(CLIENTPORT) + ")\n")
-	print("(digite /sair para se retirar do chat)\n")
-
-	thread.start_new_thread(threadRecebeMensagens, ())
-	while mensagem != "/sair":
-		mensagem = input()
-		escreverMensagem(mensagem)
+	while escolha != "0":
+		clearScreen()
+		print("Bem-vindo ao Chat P2P, " + nome + "!\t(" + str(CLIENTPORT) + ")\n")
+		print("O que você deseja realizar?")
+		print("\t1 - Enviar mensagem\n\t2 - Receber Mensagens\n\t0 - Sair\n\n$: ", end = '')
+		escolha = input()
+		if(escolha == "1"):
+			clearScreen()
+			print("Digite sua mensagem:\n")
+			print("$: ", end = '')
+			mensagem = input()
+			escreverMensagem(mensagem)
+		if(escolha == "2"):
+			clearScreen()
+			print("Lista de mensagens não lidas:")
+			print(receberMensagens())
+			print("\n(pressione enter para continuar)")
+			mensagem = input()
