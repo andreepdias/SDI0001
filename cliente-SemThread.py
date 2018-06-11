@@ -102,7 +102,6 @@ def receberMensagens():
 				if(mensagem != ""):
 					mensagens[i] = mensagem
 					enviaAquisicaoIndice(i)
-					break
 	return mensagem
 
 def threadAguardaSolicitacoes():

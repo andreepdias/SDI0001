@@ -63,7 +63,7 @@ def requisicaoTotalMensagens():
 		sock.close()
 	return int(recebido)
 
-def requisaoMensagem(indice, ip, porta):
+def requisicaoMensagem(indice, ip, porta):
 	sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	recebido = ""
 	try:
@@ -98,7 +98,7 @@ def receberMensagens():
 				possuidor = possuidores[j].split(":")
 				ip = possuidor[0]
 				porta = possuidor[1]
-				mensagem = requisaoMensagem(i, ip, porta)
+				mensagem = requisicaoMensagem(i, ip, porta)
 				if(mensagem != ""):
 					mensagens[i] = mensagem
 					enviaAquisicaoIndice(i)
