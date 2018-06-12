@@ -98,7 +98,7 @@ def receberMensagens():
 				possuidor = possuidores[j].split(":")
 				ip = possuidor[0]
 				porta = possuidor[1]
-				mensagem = requisicaoMensagem(i, ip, porta)
+				mensagem += requisicaoMensagem(i, ip, porta) + "\n"
 				if(mensagem != ""):
 					mensagens[i] = mensagem
 					enviaAquisicaoIndice(i)
