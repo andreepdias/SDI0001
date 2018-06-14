@@ -98,11 +98,12 @@ def receberMensagens():
 				possuidor = possuidores[j].split(":")
 				ip = possuidor[0]
 				porta = possuidor[1]
-				mensagem = requisicaoMensagem(i, ip, porta)
-				if(mensagem != ""):
-					mensagens[i] = mensagem
+				msg = ""
+				msg = requisicaoMensagem(i, ip, porta)
+				if(msg != ""):
+					mensagem += msg + "\n"
+					mensagens[i] = msg
 					enviaAquisicaoIndice(i)
-					break
 	return mensagem
 
 def threadAguardaSolicitacoes():

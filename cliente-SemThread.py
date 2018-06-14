@@ -98,9 +98,11 @@ def receberMensagens():
 				possuidor = possuidores[j].split(":")
 				ip = possuidor[0]
 				porta = possuidor[1]
-				mensagem += requisicaoMensagem(i, ip, porta) + "\n"
-				if(mensagem != ""):
-					mensagens[i] = mensagem
+				msg = ""
+				msg = requisicaoMensagem(i, ip, porta)
+				if(msg != ""):
+					mensagem += msg + "\n"
+					mensagens[i] = msg
 					enviaAquisicaoIndice(i)
 	return mensagem
 
@@ -122,7 +124,6 @@ class ConexaoTCP(socketserver.BaseRequestHandler):
 		dados = dados.split(";")
 
 		indice = dados[1]
-		print("indice: " + indice)
 
 		envio = mensagens[int(indice)]
 		self.request.sendall(bytes(envio, "utf-8"))
